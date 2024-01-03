@@ -1,15 +1,24 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        #한 글자일 경우, s를 뒤집었을 때 s와 같은 경우 s 그대로 반환
-        if len(s) == 1 or s == s[::-1]: return s
+#한 글자일 경우, s를 뒤집었을 때 s와 같은 경우 s 그대로 반환
+        if len(s) ==1 or s == s[::-1]: return s
+        
+        def expand(left: int, right: int) -> str:
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+            return s[left + 1:right]
 
-        #팰린드롬 담을 리스트 선언
-        p_list = []
 
-        for i in range(len(s)):
-            for j in range(len(s), i, -1):
-                #i~j까지 문자열과 뒤집었을때 문자열 비교하여 일치하면 빈 리스트에 담음
-                if s[i:j] == s[i:j][::-1]:
-                    p_list.append(s[i:j])
 
-        return max(p_list, key=len)
+	# 문자열 길이가 가장 큰 값 result에 담아서 반환
+        result = ''
+        for i in range(len(s) - 1):
+		#for문 돌리면서 현재 가장 문자열이 긴 단어 result에 담아서 함께 비교
+            result = max(result, 
+            		# 짝수인 경우 한 자리씩 비교
+                         expand(i, i + 1), 
+                         # 홀수인 경우 두 자리씩 비교
+                         expand(i, i + 2),
+                         key=len)
+        return result
