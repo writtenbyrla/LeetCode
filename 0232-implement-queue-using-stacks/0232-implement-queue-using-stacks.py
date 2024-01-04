@@ -20,7 +20,7 @@ class MyQueue:
         if not self.output: #output 배열에 요소가 존재하지 않으면
             while self.input: #input 리스트에 남는게 없을 때 까지
                 self.output.append(self.input.pop())
-        return self.output[-1]     
+        return self.output[-1] #-1은 가장 끝에 있는 요소   
             
         
     # 큐가 비었는지 확인
