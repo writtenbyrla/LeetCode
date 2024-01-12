@@ -20,11 +20,12 @@ class Solution:
         while stack:
             node = stack.pop()
             if node:
-                if node.val > low:
-                    stack.append(node.left)
-                if node.val < high:
-                    stack.append(node.right)
+                # 범위안에 있으면 해당 값 더하고
                 if low <= node.val <= high:
                     sum += node.val
+                    
+                #서브 트리 계속 순회함
+                stack.append(node.left)
+                stack.append(node.right)
 
         return sum
