@@ -1,6 +1,6 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        
+        # 병합 정렬 이용하여 풀이
         def merge(arr1, arr2):
             result = []
             i = j = 0
