@@ -3,13 +3,11 @@ class Solution:
         if not matrix:
             return False
 
-        rows = len(matrix)
-
-        for row in range(rows):
+        for row in range(len(matrix)):
             start, end = 0, len(matrix[0])-1
 
             while start <= end:
-                mid = start + (end-start) // 2
+                mid = (start + end) // 2
 
                 if matrix[row][mid] == target:
                     return True
@@ -18,4 +16,4 @@ class Solution:
                 else:
                     start = mid +1
 
-        return False        
+        return False 
