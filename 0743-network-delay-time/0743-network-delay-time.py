@@ -2,7 +2,7 @@ class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         INF = int(1e9)
 
-        graph = [[] for _ in range(n+1)]
+        graph = defaultdict(list)
         for a, b, cost in times:
             graph[a].append((b, cost))
 
@@ -24,7 +24,4 @@ class Solution:
                     heapq.heappush(q, (time, adj))
 
         max_dist = max(dist[1:])
-        if max_dist < INF:
-            return max_dist
-        else:
-            return -1
+        return max_dist if max_dist < INF else -1
